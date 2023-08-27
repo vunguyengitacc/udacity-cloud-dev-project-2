@@ -41,7 +41,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util.js';
       response.on("finish", ()=> deleteLocalFiles([result]));
     } catch(err) {
       console.log(err);
-      return response.status(422).send(err)
+      return response.status(422).send("Unable to process")
     }
   } );
 
