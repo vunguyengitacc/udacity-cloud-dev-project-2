@@ -8,7 +8,7 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util.js';
   const app = express();
 
   // Set the network port
-  const port = process.env.PORT || 8082;
+  const port = process.env.PORT || 80;
   
   // Use the body parser middleware for post requests
   app.use(bodyParser.json());
@@ -40,8 +40,8 @@ import {filterImageFromURL, deleteLocalFiles} from './util/util.js';
       response.sendFile(result);
       response.on("finish", ()=> deleteLocalFiles([result]));
     } catch(err) {
-      console.log(err);
-      return response.status(422).send("Unable to process")
+      console.log(err.message);
+      return response.status(422).send("Unable to process with error: "+err.message)
     }
   } );
 
